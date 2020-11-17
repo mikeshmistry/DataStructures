@@ -57,6 +57,9 @@
     <Compile Include="Queues\FixedBasedQueueTests.cs" />
     <Compile Include="Stacks\DynamicStackTests.cs" />
     <Compile Include="Stacks\FixedBasedStackTests.cs" />
+    <Compile Include="Trees\BinarySearchTreeTests.cs" />
+    <Compile Include="Trees\BinaryTreeTests.cs" />
+    <Compile Include="Trees\NaryTreeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -11,7 +11,7 @@ namespace DataStructures.Trees
     /// Class to represent a binary tree
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class BinaryTree<T>
+  public class BinaryTree<T>
     {
         #region Fields
 

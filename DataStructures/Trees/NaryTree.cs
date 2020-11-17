@@ -11,7 +11,7 @@ namespace DataStructures.Trees
     /// Class to represent a tree with many children
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class NaryTree<T>
+    public class NaryTree<T>
     {
         #region Fields
         /// <summary>
