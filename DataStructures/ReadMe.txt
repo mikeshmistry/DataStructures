@@ -1,0 +1,1 @@
+﻿This is my take on common data structures. These are all generic a will work with most data types
