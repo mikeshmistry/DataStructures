@@ -1,2 +1,2 @@
 # DataStructures
-My implementation on common data structures written in C# using generic classes 
+My Implementation Of Common Data Structures Written in C# Using Generic Classes 
