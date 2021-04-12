@@ -9,7 +9,7 @@ namespace DataStructures.NodeClasses
     /// <summary>
     /// Class to represent a nary tree with n children 
     /// </summary>
-    internal class NaryTreeNode<T>
+    public class NaryTreeNode<T>
     {
 
         #region Properties
@@ -22,7 +22,7 @@ namespace DataStructures.NodeClasses
         /// <summary>
         /// List to hold children of the Nary node
         /// </summary>
-        public IList<NaryTreeNode<T>> ChildrenList { get; set; }
+        public List<NaryTreeNode<T>> ChildrenList { get; set; }
 
         #endregion
 
@@ -37,11 +37,22 @@ namespace DataStructures.NodeClasses
         /// <summary>
         /// Constructor that takes in a data and creates a Nary Node with no children
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="data">The Data to be stored for the node</param>
         public NaryTreeNode(T data)
         {
             Data = data;
             ChildrenList = new List<NaryTreeNode<T>>();
+        }
+
+        /// <summary>
+        /// Constructor that takes in a data and creates a Nary Node with children
+        /// </summary>
+        /// <param name="data">The data to be stored for the node</param>
+        /// <param name="children">The list of children</param>
+        public NaryTreeNode(T data, List<NaryTreeNode<T>> children)
+        {
+            Data = data;
+            ChildrenList = children;
         }
 
         #endregion 
