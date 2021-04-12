@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="AbstractClasses\QueueOperations.cs" />
     <Compile Include="AbstractClasses\StackOperations.cs" />
+    <Compile Include="Interfaces\INaryTreeOperation.cs" />
     <Compile Include="Lists\DoublyLinkedList.cs" />
     <Compile Include="Lists\FixedList.cs" />
     <Compile Include="Interfaces\IOperations.cs" />
