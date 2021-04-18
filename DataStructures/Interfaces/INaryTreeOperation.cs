@@ -49,6 +49,14 @@ namespace DataStructures.Interfaces
         NaryTreeNode<T> Find(T item);
 
         /// <summary>
+        /// Removes a node from the tree and all its children
+        /// </summary>
+        /// <param name="item">The item to be removed</param>
+        /// <returns>True if the item was removed</returns>
+        bool Remove(T item);
+
+
+        /// <summary>
         /// Prints the tree in level order
         /// </summary>
         void PrintTree();
