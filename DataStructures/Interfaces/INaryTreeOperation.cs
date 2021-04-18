@@ -41,5 +41,17 @@ namespace DataStructures.Interfaces
         /// </summary>
         void Clear();
 
+        /// <summary>
+        /// Finds a specific node in the tree 
+        /// </summary>
+        /// <param name="item">The item to be found</param>
+        /// <returns>The node with all children. Null if not found</returns>
+        NaryTreeNode<T> Find(T item);
+
+        /// <summary>
+        /// Prints the tree in level order
+        /// </summary>
+        void PrintTree();
+
    }
 }
