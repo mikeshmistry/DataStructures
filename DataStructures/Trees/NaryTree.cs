@@ -27,7 +27,10 @@ namespace DataStructures.Trees
         /// <summary>
         /// Default Constructor 
         /// </summary>
-        public NaryTree() { }
+        public NaryTree() 
+        {
+            root = null;
+        }
 
         /// <summary>
         /// Constructor that takes in the data for the root of the tree
@@ -50,15 +53,22 @@ namespace DataStructures.Trees
         public bool InsertTopLevel(T item)
         {
             var added = false;
+            var newNode = new NaryTreeNode<T>(item);
 
-            //Item is not null add it
-            if (item != null)
+            if (root != null)
             {
-               var newNode = new  NaryTreeNode<T>(item);
                 root.ChildrenList.Add(newNode);
                 added = true;
             }
 
+            //item becomes the new root
+            else
+            {
+                root.Data = item;
+                added = true;
+            }
+
+           
 
             return added;
 
@@ -67,21 +77,43 @@ namespace DataStructures.Trees
         public bool InsertTopLevelWithChildren(T item, List<NaryTreeNode<T>> children)
         {
             var added = false;
+            var newNode = new NaryTreeNode<T>(item, children);
 
 
-            // item is not null add it to root
-            if (item != null)
+            if (root != null)
             {
-                var newNode = new NaryTreeNode<T>(item, children);
+                root.ChildrenList.Add(newNode);
                 added = true;
             }
 
+            //node becomes the new root
+            else
+            {
+                root = newNode;
+                added = true;
+            }
+             
             return added;
         }
 
         public bool Insert(T item, T value)
         {
-            throw new NotImplementedException();
+            var added = false;
+            var newNode = new NaryTreeNode<T>(value);
+
+            var found = Find(item);
+
+            //found the node
+            if (found != null)
+            {
+                if (found.ChildrenList != null)
+                {
+                    found.ChildrenList.Add(newNode);
+                    added = true;
+                }
+            }
+
+            return added;
         }
 
         public void Clear()
@@ -91,8 +123,8 @@ namespace DataStructures.Trees
 
         public NaryTreeNode<T> Find(T item)
         {
-            //case of empty tree and item being null 
-            if (root == null || item == null)
+            //case of empty tree 
+            if (root == null)
                 return null;
 
             var queue = new Queue<NaryTreeNode<T>>();
