@@ -55,6 +55,12 @@ namespace DataStructures.Interfaces
         /// <returns>True if the item was removed</returns>
         bool Remove(T item);
 
+        /// <summary>
+        /// Checks to see if the tree is empty 
+        /// </summary>
+        /// <returns></returns>
+        bool IsEmpty();
+
 
         /// <summary>
         /// Prints the tree in level order
