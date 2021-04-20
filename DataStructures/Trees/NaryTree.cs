@@ -27,9 +27,10 @@ namespace DataStructures.Trees
         /// <summary>
         /// Default Constructor 
         /// </summary>
-        public NaryTree() 
+        public NaryTree()
         {
             root = null;
+           
         }
 
         /// <summary>
@@ -39,6 +40,7 @@ namespace DataStructures.Trees
         public NaryTree(T data)
         {
             root = new NaryTreeNode<T>(data);
+            
         }
 
         #endregion
@@ -64,11 +66,11 @@ namespace DataStructures.Trees
             //item becomes the new root
             else
             {
-                root.Data = item;
+                root = newNode;
                 added = true;
             }
 
-           
+
 
             return added;
 
@@ -92,7 +94,7 @@ namespace DataStructures.Trees
                 root = newNode;
                 added = true;
             }
-             
+
             return added;
         }
 
@@ -127,6 +129,10 @@ namespace DataStructures.Trees
             if (root == null)
                 return null;
 
+            //found at root
+            if (root.Data.Equals(item))
+                return root;
+
             var queue = new Queue<NaryTreeNode<T>>();
             var found = false;
 
@@ -150,8 +156,10 @@ namespace DataStructures.Trees
                 {
                     //if found 
                     if (current.Data.Equals(item))
+                    {
                         found = true;
-
+                        foundItem = current;
+                    }
                     //not found at the current level so add its children
                     else
                     {
@@ -169,45 +177,119 @@ namespace DataStructures.Trees
             return foundItem;
         }
 
-        public void PrintTree()
-        {
-            if (root == null)
-                Console.WriteLine("Empty Tree");
 
+        public bool Remove(T item)
+        {
+            var removed = false;
+            var found = false;
+            NaryTreeNode<T> current = null;
+            NaryTreeNode<T> removedNode = null;
             var queue = new Queue<NaryTreeNode<T>>();
 
-            NaryTreeNode<T> current = null;
+            //base case empty tree
+            if (IsEmpty())
+                return true;
+
+            //case delete at root removes all children
+            if (root != null && root.Data.Equals(item))
+            {
+                Clear();
+                return true;
+            }
 
             queue.Enqueue(root);
 
-            //while the queue is not empty 
-            while(queue.Count() !=0)
+            while (queue.Count != 0 && !found)
             {
-                //remove the first node in the queue
                 current = queue.Dequeue();
 
-                //current node is not null
-                if(current !=null)
+                if (current != null)
                 {
-                    //print it
-                    Console.Write(current.Data);
-
-                    //add its children if they have any to the queue
-                    if(current.ChildrenList !=null)
+                    //found it so exit
+                    if (current.Data.Equals(item))
                     {
-                        foreach (var child in current.ChildrenList)
-                            queue.Enqueue(child);
+                        found = true;
+                        removedNode = current;
+                    }
+                    //not found so check the children of the node
+                    else
+                    {
+                        if (current.ChildrenList != null)
+                        {
+                            foreach (var child in current.ChildrenList)
+                            {
+                                if (child.Data.Equals(item))
+                                {
+                                    found = true;
+                                    removedNode = current;
+                                }
+
+                                //children list is not null queue it
+                                else if (child.ChildrenList != null)
+                                {
+                                    queue.Enqueue(child);
+                                }
+                            }
+                        }
+
                     }
                 }
-
-                Console.WriteLine();
             }
 
+            //remove the node
+            if (current != null && current.ChildrenList != null)
+                current.ChildrenList.Remove(removedNode);
+
+
+                return removed;
+
+
+            }
+
+            public bool IsEmpty()
+            {
+                return root == null;
+            }
+
+            public void PrintTree()
+            {
+                if (root == null)
+                    Console.WriteLine("Empty Tree");
+
+                var queue = new Queue<NaryTreeNode<T>>();
+
+                NaryTreeNode<T> current = null;
+
+                queue.Enqueue(root);
+
+                //while the queue is not empty 
+                while (queue.Count() != 0)
+                {
+                    //remove the first node in the queue
+                    current = queue.Dequeue();
+
+                    //current node is not null
+                    if (current != null)
+                    {
+                        //print it
+                        Console.Write(current.Data);
+
+                        //add its children if they have any to the queue
+                        if (current.ChildrenList != null)
+                        {
+                            foreach (var child in current.ChildrenList)
+                                queue.Enqueue(child);
+                        }
+                    }
+
+                    Console.WriteLine();
+                }
+
+            }
+
+
+            #endregion
+
+
         }
-
-
-        #endregion
-
-
     }
-}
