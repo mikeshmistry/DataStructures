@@ -12,7 +12,7 @@ namespace DataStructures.Trees
     /// <summary>
     /// Class to represent a binary search tree
     /// </summary>
-    pulic class BinarySearchTree<T>
+    public class BinarySearchTree<T>
     {
         #region Fields
 
