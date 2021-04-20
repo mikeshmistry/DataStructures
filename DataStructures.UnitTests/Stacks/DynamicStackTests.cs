@@ -16,7 +16,7 @@ namespace DataStructures.UnitTests.Stacks
         /// Test for the default constructor
         /// </summary>
         [TestMethod]
-        public void FixedBasedStack_DefaultConstructor()
+        public void DynamicBasedStack_DefaultConstructor()
         {
             var stack = new DynamicStack<int>();
             Assert.IsTrue(stack.CurrentSize == 0);
