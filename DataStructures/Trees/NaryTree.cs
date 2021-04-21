@@ -221,11 +221,12 @@ namespace DataStructures.Trees
                                 if (child.Data.Equals(item))
                                 {
                                     found = true;
-                                    removedNode = current;
+                                    removedNode = child;
+                                    break;
                                 }
 
                                 //children list is not null queue it
-                                else if (child.ChildrenList != null)
+                                else if (child.ChildrenList.Count !=0)
                                 {
                                     queue.Enqueue(child);
                                 }
@@ -237,9 +238,11 @@ namespace DataStructures.Trees
             }
 
             //remove the node
-            if (current != null && current.ChildrenList != null)
+            if (removedNode !=null && current != null && current.ChildrenList != null)
+            {
                 current.ChildrenList.Remove(removedNode);
-
+                removed = true;
+            }
 
                 return removed;
 
